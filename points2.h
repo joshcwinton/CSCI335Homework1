@@ -23,8 +23,7 @@ public:
   // Set size to 0.
   Points2() {
     size_ = 0;
-    std::array<Object, 2> *sequence_;
-    sequence_ = new std::array<Object, 2>[100];
+    sequence_ = nullptr;
   }
 
   // Copy-constructor.
@@ -65,6 +64,7 @@ public:
 
   ~Points2() {
     // delete [] sequence_;
+    // Uncommenting above line results in 'pointer being freed was not allocated
   }
 
   // End of big-five.
@@ -99,6 +99,7 @@ public:
       input_stream >> token;
       sequence_[i][1] = token;
     }
+    std::cout << '\n';
   }
 
   size_t size() const { return size_; }
@@ -114,6 +115,17 @@ public:
     abort();
   }
 
+  // @location: an index to a location in the sequence.
+  // @returns the point at @location.
+  // const version.
+  // abort() if out-of-range.
+  const std::array<Object, 2> &operator[](size_t location) {
+    if (location < size_) {
+      return sequence_[location];
+    }
+    abort();
+  }
+
   //  @c1: A sequence.
   //  @c2: A second sequence.
   //  @return their sum. If the sequences are not of the same size, append the
@@ -122,24 +134,29 @@ public:
     if (c1.size_ == c2.size_) {
       Points2<double> sums{c1};
       for (size_t i = 0; i < c1.size_; i++) {
-        sums[i][0] += c2[i][0];
+        sums.sequence_[i][0] += c2[i][0];
+        sums.sequence_[i][1] += c2[i][1];
       }
       return sums;
     }
     if (c1.size_ < c2.size_) {
       Points2<double> sums{c2};
       for (size_t i = 0; i < c1.size_; i++) {
-        sums[i][0] += c1[i][0];
+        sums.sequence_[i][0] += c1[i][0];
+        sums.sequence_[i][1] += c1[i][1];
       }
       return sums;
     }
     if (c1.size_ > c2.size_) {
       Points2<double> sums{c1};
       for (size_t i = 0; i < c2.size_; i++) {
-        sums[i][0] += c2[i][0];
+        sums.sequence_[i][0] += c2[i][0];
+        sums.sequence_[i][1] += c2[i][1];
       }
       return sums;
     }
+    Points2<double> sums;
+    return sums;
   }
 
   // Overloading the << operator.
@@ -149,7 +166,7 @@ public:
       out << "()";
     }
     for (size_t i = 0; i < some_points2.size_; i++) {
-      out << '(' << some_points2[i][0] << ',' << some_points2[i][1] << ')';
+      out << '(' << some_points2[i][0] << ", " << some_points2[i][1] << ") ";
     }
     out << std::endl;
     return out;
