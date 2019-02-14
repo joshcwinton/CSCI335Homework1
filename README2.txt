@@ -1,14 +1,19 @@
+JOSH WINTON
+
 PARTS COMPLETED:
 - Part 1: Complete
-- Part 2: Complete up to + operator
+  - Big 5 work as expected
+
+- Part 2: Complete
+  - [] operator works as expected
+  - +  operator works as expected
 
 BUGS ENCOUNTERED:
-- Deallocation: When I include 'delete [] sequence_' in the destructor for Points2 I get an error saying 'pointer being freed was not allocated'
-- Editing a Points2 for sum: My implementation for '+' operator inadvertently
+None
 
 INSTRUCTIONS:
-make all
 make clean
+make all
 ./test_points2 < test_input_file.txt
 
 

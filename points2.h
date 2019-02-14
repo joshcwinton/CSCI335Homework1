@@ -1,5 +1,5 @@
 // JOSH WINTON
-// Few comments describing the class Points2
+// Points2 is used for storing pairs of objects of any
 
 #ifndef CSCI335_HOMEWORK1_POINTS2_H_
 #define CSCI335_HOMEWORK1_POINTS2_H_
@@ -30,7 +30,7 @@ public:
   Points2(const Points2 &rhs) {
     size_ = rhs.size_;
     sequence_ = new std::array<Object, 2>[size_];
-    sequence_ = rhs.sequence_;
+    std::copy(rhs.sequence_, rhs.sequence_+size_, sequence_);
   };
 
   // Copy-assignment. If you have already written
@@ -63,8 +63,7 @@ public:
   }
 
   ~Points2() {
-    // delete [] sequence_;
-    // Uncommenting above line results in 'pointer being freed was not allocated
+    delete [] sequence_;
   }
 
   // End of big-five.
