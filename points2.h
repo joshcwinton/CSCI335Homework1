@@ -48,7 +48,6 @@ public:
     return *this;
   }
 
-  // NEEDS WORK
   // Move-constructor.
   Points2(Points2 &&rhs)
       : sequence_{std::move(rhs.sequence_)}, size_{rhs.size_} {
@@ -65,8 +64,7 @@ public:
   }
 
   ~Points2() {
-    delete size_;
-    delete[] sequence;
+    // delete [] sequence_;
   }
 
   // End of big-five.

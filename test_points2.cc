@@ -54,8 +54,8 @@ void TestPart2() {
     cout << "Enter a sequence of points (double)" << endl;
     b.ReadPoints2();  // User provides input for Points2 b.
     cout << b << endl;
-    cout << "Result of a + b" << endl;
-    cout << a + b << endl;
+    // cout << "Result of a + b" << endl;
+    // cout << a + b << endl;
     // Points2<double> d = a + b;
     // cout << "Result of d = a + b" << endl;
     // cout << d;
